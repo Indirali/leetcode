@@ -1,6 +1,8 @@
 package com.leetcode.pattern;
 
 /**
+ * 双判断单例
+ * <p>
  * Create with IntelliJ IDEA
  * User: Indira
  * Date: 2018/11/22

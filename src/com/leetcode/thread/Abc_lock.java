@@ -10,16 +10,23 @@ import java.util.concurrent.locks.ReentrantLock;
  * Time: 16:56
  **/
 public class Abc_lock {
+    /**
+     * 通过JDK5中的Lock锁来保证线程的访问的互斥
+     */
+    private static Lock lock = new ReentrantLock();
 
-    private static Lock lock = new ReentrantLock();// 通过JDK5中的Lock锁来保证线程的访问的互斥
-    private static int state = 0;//通过state的值来确定是否打印
+    /**
+     * 通过state的值来确定是否打印
+     */
+    private static int state = 0;
 
     static class ThreadA extends Thread {
         @Override
         public void run() {
             try {
                 lock.lock();
-                while (state % 3 == 0) {// 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                // 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                while (state % 3 == 0) {
                     System.out.print("A \n");
                     state++;
 
@@ -35,7 +42,8 @@ public class Abc_lock {
         public void run() {
             try {
                 lock.lock();
-                while (state % 3 == 1) {// 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                // 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                while (state % 3 == 1) {
                     System.out.print("B \n");
                     state++;
                 }
@@ -51,7 +59,8 @@ public class Abc_lock {
         public void run() {
             try {
                 lock.lock();
-                while (state % 3 == 2) {// 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                // 多线程并发，不能用if，必须用循环测试等待条件，避免虚假唤醒
+                while (state % 3 == 2) {
                     System.out.print("C \n");
                     state++;
                 }
