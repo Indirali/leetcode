@@ -10,6 +10,11 @@ package com.leetcode.pattern;
  **/
 public class Singleton {
 
+    /**
+     * 使用Singleton的好处还在于可以节省内存，因为它限制了实例的个数，有利于Java垃圾回收
+     * 作为通信媒介使用，也就是数据共享
+     */
+
     private static volatile Singleton singleton;
 
     public Singleton() {
